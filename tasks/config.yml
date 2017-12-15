@@ -25,3 +25,18 @@
     - 'etc/kea/kea-dhcp-ddns.conf'
     - 'etc/kea/kea-dhcp4.conf'
   when: ansible_os_family == "Debian"
+
+- name: config | configuring kea dhcp services (Debian)
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: "o=rw,g=r,o=r"
+  notify:
+    - 'restart {{ ansible_os_family|lower }} kea-dhcp6-server'
+  become: true
+  with_items:
+    - 'etc/kea/kea-dhcp-ddns.conf'
+    - 'etc/kea/kea-dhcp6.conf'
+  when: ansible_os_family == "Debian" and kea_dhcp6_config == true

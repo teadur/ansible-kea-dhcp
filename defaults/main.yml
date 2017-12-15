@@ -3,12 +3,13 @@
 
 # Defines if Kea DHCP should be configured
 kea_dhcp_config: false
+kea_dhcp6_config: false
 
 # Defines  Kea DHCP packages to install for Debian/Ubuntu
 kea_dhcp_debian_packages:
   - 'kea-dhcp-ddns-server'
   - 'kea-dhcp4-server'
-  # - 'kea-dhcp6-server'
+  - 'kea-dhcp6-server'
   - 'socat'
 
 # Defines Kea DHCP Debian/Ubuntu services should be enabled
@@ -113,6 +114,9 @@ kea_dhcp_dhcp4_config:
         severity: 'INFO'
         debuglevel: 0
 
+kea_dhcp_dhcp6_config:
+   Dhcp6:
+       
 # Defines Kea DHCP RedHat services should be enabled
 kea_dhcp_redhat_services:
   - name: 'kea-dhcp-ddns'
